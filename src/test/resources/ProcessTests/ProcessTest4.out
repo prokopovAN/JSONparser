@@ -1,0 +1,19 @@
+{
+  "key1": {
+    "sub1": {
+      "value": 3
+    },
+    "sub2": {
+      "value": 1
+    },
+    "sub4": {
+      "value": "sad"
+    }
+  },
+  "key2": {
+    "sub3": {
+      "value": 3
+    },
+    "value": 2
+  }
+}

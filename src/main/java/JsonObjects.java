@@ -15,7 +15,7 @@ public class JsonObjects {
             return Boolean.parseBoolean(value);
         if (value.matches("^\".*\"$"))
             return value.substring(1, value.length() - 1);
-        Object res = (Map<String, Object>)getObject(
+        Object res = getObject(
                 value.split("[ .]+"), true
         );
         if (res == null) {
@@ -23,37 +23,43 @@ public class JsonObjects {
         }
         return res;
     }
-    private Map<String, Object> getObject(String[] expression, boolean safe) {
-        Map<String, Object> currentObject = objects;
+    private Object getObject(String[] expression, boolean safe) {
+        Object currentObject = objects;
         for (String object : expression) {
-            if (!currentObject.containsKey(object)) {
+            if (!((Map)currentObject).containsKey(object)) {
                 if (!safe) {
-                    currentObject.put(object, new TreeMap<>());
+                    ((Map)currentObject).put(object, new TreeMap<>());
                 } else {
                     return null;
                 }
             }
-            currentObject = (Map<String, Object>)currentObject.get(object);
+            currentObject = ((Map)currentObject).get(object);
         }
+        int b;
+        b = 6;
+        int c = b + 2;
         return currentObject;
     }
     public JsonObjects() {
         objects = new TreeMap<>();
     }
-    public void process(String command) {
+    public boolean process(String command) {
         int indexEqual = command.indexOf('=');
         String value = command.substring(indexEqual + 1).trim();
         String[] expression = command.substring(0, indexEqual).split("[ .]+");
 
         Object objValue = getObject(value);
         if (objValue != null) {
-            Map<String, Object> currentObject = getObject(expression, false);
+            Map<String, Object> currentObject = (Map<String, Object>)getObject(expression, false);
             currentObject.clear();
             currentObject.put("value", objValue);
+            return true;
         }
+        return false;
     }
     public String toJSON() {
         Gson jsonBuilder = new GsonBuilder().setPrettyPrinting().create();
+
         return jsonBuilder.toJson(objects);
     }
 }

@@ -7,8 +7,8 @@ public class CommandParser {
     public CommandParser(Scanner scanner) {
         in = scanner;
         template = "^[\\w]+(\\s*\\.\\s*[\\w]+)*\\s*=\\s*" +
-                "(([\\w]+(\\s*\\.\\s*[\\w]+)*)|" +
-                "([+-]?\\d+)|(true)|(false)|(\".*\")|" +
+                "(([+-]?\\d+)|(\".*\")|" +
+                "([\\w]+(\\s*\\.\\s*[\\w]+)*)|" +
                 "([+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)))\\s*$";
     }
     public CommandParser(FileReader fileReader) {
