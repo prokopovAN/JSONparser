@@ -1,0 +1,29 @@
+{
+  "key1": {
+    "sub1": {
+      "value": 3
+    },
+    "sub2": {
+      "value": 1
+    }
+  },
+  "key2": {
+    "a": {
+      "value": {
+        "sub1": {
+          "value": 3
+        },
+        "sub2": {
+          "value": 1
+        }
+      }
+    },
+    "sub3": {
+      "sub5": {
+        "value": 100
+      },
+      "value": 4
+    },
+    "value": 2
+  }
+}
